@@ -23,11 +23,10 @@
         android:paddingEnd="20dp"
         android:paddingStart="20dp"
         android:paddingTop="15dp"
-        tools:targetApi="lollipop"
         android:layout_alignParentBottom="true"
         android:background="#FFFFFF"
         android:id="@+id/manu_bar"
-        >
+        android:baselineAligned="false">
         <LinearLayout
             android:id="@+id/tasks"
             android:background="@android:color/transparent"
@@ -45,13 +44,13 @@
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:src="@drawable/notes"
-               />
+                android:contentDescription="@string/notes" />
 
             <TextView
                 android:id="@+id/tasksText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tasks"
+                android:text="@string/tasks"
                 android:layout_marginStart="10dp"
                 android:textSize="16sp"
                 android:textColor="#FFF"
@@ -75,20 +74,22 @@
             android:layout_weight="1"
             android:clickable="true"
             >
+
             <ImageView
                 android:id="@+id/homeIcon"
                 android:layout_width="28dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
-                android:src="@drawable/home_selected"
+                android:contentDescription="@string/home"
 
-                />
+                android:src="@drawable/home_selected"
+                tools:ignore="ImageContrastCheck" />
 
             <TextView
                 android:id="@+id/homeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Home"
+                android:text="@string/home"
                 android:layout_marginStart="10dp"
                 android:textSize="16sp"
                 android:textColor="#FFF"
@@ -117,14 +118,14 @@
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:src="@drawable/notification"
-                />
+                android:contentDescription="@string/notification" />
 
             <TextView
                 android:id="@+id/notificationText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="Notification"
+                android:text="@string/notification"
                 android:textSize="16sp"
                 android:textColor="#FFF"
                 android:textStyle="bold"
