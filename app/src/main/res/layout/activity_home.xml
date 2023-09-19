@@ -9,12 +9,13 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/fragment_container"/>
+        android:id="@+id/fragment_container"
+        android:layout_above="@id/manu_bar"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="4"
+        android:weightSum="3"
         android:orientation="horizontal"
         android:gravity="center"
         android:elevation="10dp"
@@ -25,8 +26,11 @@
         tools:targetApi="lollipop"
         android:layout_alignParentBottom="true"
         android:background="#FFFFFF"
+        android:id="@+id/manu_bar"
         >
         <LinearLayout
+            android:id="@+id/tasks"
+            android:background="@android:color/transparent"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:orientation="horizontal"
@@ -34,16 +38,92 @@
             android:paddingEnd="5dp"
             android:gravity="center"
             android:layout_weight="1"
+            android:clickable="true"
             >
             <ImageView
+                android:layout_width="28dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/notes"
+               />
+
+            <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:text="Tasks"
+                android:layout_marginStart="10dp"
+                android:textSize="16sp"
+                android:textColor="#FFF"
+                android:textStyle="bold"
+                android:visibility="gone"
+
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/home"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@android:color/transparent"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:clickable="true"
+            >
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/home"
+
+                />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Home"
-                android:textAlignment="center"
+                android:layout_marginStart="10dp"
+                android:textSize="16sp"
+                android:textColor="#FFF"
+                android:textStyle="bold"
+                android:visibility="gone"
+
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/notification"
+            android:background="@android:color/transparent"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:clickable="true"
+
+            >
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/notification"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Notification"
+                android:textSize="16sp"
+                android:textColor="#FFF"
+                android:textStyle="bold"
+                android:visibility="gone"
 
                 />
         </LinearLayout>
