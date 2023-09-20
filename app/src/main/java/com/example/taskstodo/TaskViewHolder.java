@@ -1,5 +1,4 @@
 package com.example.taskstodo;
 
-public class TaskAdapter {
-
+public class TaskViewHolder {
 }
