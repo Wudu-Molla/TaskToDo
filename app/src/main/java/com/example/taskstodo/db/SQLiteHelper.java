@@ -28,7 +28,7 @@ public class SQLiteHelper extends SQLiteOpenHelper{
 
     public static String TABLE = "create table if not exists " + TABLE_NAME + " (" + ID +
             " INTEGER PRIMARY KEY AUTOINCREMENT, " + TASK +
-       " TEXT, " + END_DATE +" TEXT, " + IS_DONE + " TEXT );";
+       " TEXT, " + END_DATE +" TEXT, " + IS_DONE + " TEXT )";
 
     public SQLiteHelper(@Nullable Context context) {
         super(context, DB_NAME, null, version);

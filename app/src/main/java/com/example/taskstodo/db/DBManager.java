@@ -28,7 +28,7 @@ public class DBManager {
         values.put(SQLiteHelper.TASK, task);
         values.put(SQLiteHelper.END_DATE, end_date);
         values.put(SQLiteHelper.IS_DONE, is_done);
-        sql_db.insert(SQLiteHelper.TABLE, null, values);
+        sql_db.insert(SQLiteHelper.TABLE_NAME, null, values);
     }
 
 
