@@ -26,6 +26,7 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
         tasks = findViewById(R.id.tasks);
         homeIcon = findViewById(R.id.homeIcon);
         notificationIcon = findViewById(R.id.notificationIcon);
+        HomeFragment fragment = new HomeFragment();
         tasksText = findViewById(R.id.tasksText);
         homeText = findViewById(R.id.homeText);
         notificationText = findViewById(R.id.notificationText);
@@ -39,6 +40,8 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.tasks:
+                manager.beginTransaction()
+                        .replace(R.id.fragment_container, TasksFragment.class, null).commit();
                 tasks.setBackground(getDrawable(R.drawable.rounded));
                 tasksText.setVisibility(View.VISIBLE);
 
@@ -50,8 +53,7 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
 
                 homeIcon.setImageResource(R.drawable.home);
                 notificationIcon.setImageResource(R.drawable.notification);
-                manager.beginTransaction().setReorderingAllowed(true)
-                        .add(R.id.fragment_container, TasksFragment.class, null).commit();
+
                 break;
             case R.id.notification:
                 tasks.setBackgroundColor(getResources().getColor(android.R.color.transparent));
@@ -65,11 +67,11 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
 
                 homeIcon.setImageResource(R.drawable.home);
                 notificationIcon.setImageResource(R.drawable.notification_selected);
-                manager.beginTransaction().setReorderingAllowed(true)
-                        .add(R.id.fragment_container, NotificationFragment.class, null).commit();
+                manager.beginTransaction()
+                        .replace(R.id.fragment_container, NotificationFragment.class, null).commit();
             break;
             default:
-                manager.beginTransaction().setReorderingAllowed(true)
+                manager.beginTransaction()
                         .add(R.id.fragment_container, HomeFragment.class, null).commit();
                 tasks.setBackgroundColor(getResources().getColor(android.R.color.transparent));
                 tasksText.setVisibility(View.GONE);
