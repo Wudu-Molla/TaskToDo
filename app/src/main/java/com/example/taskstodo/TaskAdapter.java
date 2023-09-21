@@ -35,7 +35,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskViewHolder> {
         holder.task.setText(cursor.getString(1));
         holder.end_date.setText(cursor.getString(2));
         String is_done = cursor.getString(3);
-        holder.remaining_time.setText(is_done);
         if(is_done == "true"){
             holder.isDone.setChecked(true);
         } else{
