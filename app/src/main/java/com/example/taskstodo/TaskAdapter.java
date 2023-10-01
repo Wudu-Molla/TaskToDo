@@ -8,8 +8,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.taskstodo.db.DBManager;
-
 public class TaskAdapter extends RecyclerView.Adapter<TaskViewHolder> {
 
     private Context context;

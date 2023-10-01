@@ -1,39 +1,22 @@
 package com.example.taskstodo.db;
 
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import androidx.room.Delete;
+import androidx.room.Insert;
+import androidx.room.Query;
 
-public class DBManager {
+import java.util.List;
 
-    SQLiteHelper sql;
-    SQLiteDatabase sql_db;
+public interface TaskDAO {
 
-    public DBManager(Context context) {
-        this.sql = new SQLiteHelper(context);
-    }
+    @Query("SELECT * FROM tasks_db")
+    List<Tasks> getTasks();
 
-    public void openDB(){
-        sql_db = sql.getWritableDatabase();
-        sql_db = sql.getWritableDatabase();
-    }
+    @Insert
+    void insert(Tasks tasks);
 
-    public void closeDB(){
-        sql.close();
-    }
-
-    public void insert(String task, String end_date, String is_done){
-        ContentValues values = new ContentValues();
-        values.put(SQLiteHelper.TASK, task);
-        values.put(SQLiteHelper.END_DATE, end_date);
-        values.put(SQLiteHelper.IS_DONE, is_done);
-        sql_db.insert(SQLiteHelper.TABLE_NAME, null, values);
-    }
-
-
-    public Cursor getData(){
-        return sql_db.rawQuery("select * from " + SQLiteHelper.TABLE_NAME, null);
-    }
+    @Delete
+    void delete(Tasks tasks);
 
 }
+
+

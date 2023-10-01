@@ -43,4 +43,5 @@ public class SQLiteHelper extends SQLiteOpenHelper{
     public void onUpgrade(SQLiteDatabase sql_db, int i, int i1) {
     sql_db.execSQL(" DROP TABLE IF EXISTS " + TABLE_NAME);
     }
+
 }

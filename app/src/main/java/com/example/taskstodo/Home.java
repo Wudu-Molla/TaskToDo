@@ -13,10 +13,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.example.taskstodo.db.DBManager;
+import com.example.taskstodo.db.TaskDAO;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class Home extends AppCompatActivity implements View.OnClickListener {
@@ -27,14 +26,14 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
     LinearLayout notification, tasks, home;
     ImageView notificationIcon, homeIcon;
     TextView notificationText, homeText, tasksText;
-    DBManager dbManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         manager = getSupportFragmentManager();
-        dbManager = new DBManager(this);
+
         home = findViewById(R.id.home);
         notification = findViewById(R.id.notification);
         tasks = findViewById(R.id.tasks);
@@ -74,9 +73,9 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
                         String month = String.valueOf(datePicker.getMonth()+1);
                         String year = String.valueOf(datePicker.getYear());
                         String end_date_of_task = dayOfMonth +"/" + month + "/" + year;
-                        dbManager.openDB();
+                        /*dbManager.openDB();
                         dbManager.insert(content, end_date_of_task, "false");
-                        dbManager.closeDB();
+                        dbManager.closeDB();*/
                         Toast.makeText(Home.this, "Task created successfully", Toast.LENGTH_SHORT).show();
                         alert.cancel();
 
