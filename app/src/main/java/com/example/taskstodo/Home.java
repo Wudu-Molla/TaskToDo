@@ -2,6 +2,7 @@ package com.example.taskstodo;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.room.Room;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
@@ -16,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.taskstodo.db.TaskDAO;
+import com.example.taskstodo.db.Tasks;
+import com.example.taskstodo.db.TasksDB;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class Home extends AppCompatActivity implements View.OnClickListener {
@@ -73,9 +76,10 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
                         String month = String.valueOf(datePicker.getMonth()+1);
                         String year = String.valueOf(datePicker.getYear());
                         String end_date_of_task = dayOfMonth +"/" + month + "/" + year;
-                        /*dbManager.openDB();
-                        dbManager.insert(content, end_date_of_task, "false");
-                        dbManager.closeDB();*/
+
+                        TasksDB instance = TasksDB.getDatabase(getApplicationContext());
+                        instance.taskDAO().insert(new Tasks(content, end_date_of_task, true));
+                        instance.close();
                         Toast.makeText(Home.this, "Task created successfully", Toast.LENGTH_SHORT).show();
                         alert.cancel();
 
