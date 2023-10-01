@@ -1,5 +1,6 @@
 package com.example.taskstodo;
 
+import android.app.AlertDialog;
 import android.database.Cursor;
 import android.os.Bundle;
 
@@ -12,12 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.taskstodo.db.DBManager;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment{
     View view;
     RecyclerView recyclerView;
     Cursor cursor;
     DBManager dbManager;
+
 
     public HomeFragment() {
         // Required empty public constructor
@@ -33,10 +36,12 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
         dbManager = new DBManager(requireActivity());
         dbManager.openDB();
-        dbManager.insert("Buy milk", "21/9/2023", "true");
         cursor = dbManager.getData();
         recyclerView.setAdapter(new TaskAdapter(requireActivity(), cursor));
 
         return view;
     }
+
+
+
 }

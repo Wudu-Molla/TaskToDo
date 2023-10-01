@@ -6,4 +6,6 @@
     <string name="tasks">Tasks</string>
     <string name="notification">Notification</string>
     <string name="notes">notes</string>
+    <string name="add">add</string>
+    <string name="task">Task</string>
 </resources>
