@@ -8,15 +8,19 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.taskstodo.db.Tasks;
+
+import java.util.List;
+
 public class TaskAdapter extends RecyclerView.Adapter<TaskViewHolder> {
 
     private Context context;
-    Cursor cursor;
+    List<Tasks> tasks;
 
 
-    public TaskAdapter(Context context, Cursor cursor) {
+    public TaskAdapter(Context context, List<Tasks> tasks) {
         this.context = context;
-        this.cursor = cursor;
+        this.tasks = tasks;
 
 
     }
@@ -29,21 +33,17 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
-        cursor.moveToPosition(position);
-        holder.task.setText(cursor.getString(1));
-        holder.end_date.setText(cursor.getString(2));
-        String is_done = cursor.getString(3);
-        if(is_done == "true"){
-            holder.isDone.setChecked(true);
-        } else{
-            holder.isDone.setChecked(false);
-        }
+
+        holder.task.setText(tasks.get(position).getTask());
+        holder.end_date.setText(tasks.get(position).getEndDate());
+        holder.isDone.setChecked(tasks.get(position).isDone);
+
 
 
     }
 
     @Override
     public int getItemCount() {
-        return cursor.getCount();
+        return tasks.size();
     }
 }

@@ -12,12 +12,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.taskstodo.db.TaskDAO;
+import com.example.taskstodo.db.Tasks;
+import com.example.taskstodo.db.TasksDB;
+
+import java.util.List;
 
 public class HomeFragment extends Fragment{
     View view;
     RecyclerView recyclerView;
-    Cursor cursor;
-    TaskDAO dbManager;
+    TaskDAO instance;
 
 
     public HomeFragment() {
@@ -32,11 +35,10 @@ public class HomeFragment extends Fragment{
         view = inflater.inflate(R.layout.fragment_home, container, false);
         recyclerView = view.findViewById(R.id.task_collection);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
-//        dbManager = new TaskDAO(requireActivity());
-//        dbManager.openDB();
-//        cursor = dbManager.getData();
-//        recyclerView.setAdapter(new TaskAdapter(requireActivity(), cursor));
-
+        instance = TasksDB.getDatabase(requireActivity()).taskDAO();
+        List<Tasks> tasks = instance.getTasks();
+        recyclerView.setAdapter(new TaskAdapter(requireActivity(), tasks));
+        instance = null;
         return view;
     }
 
