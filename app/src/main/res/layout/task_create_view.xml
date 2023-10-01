@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -7,19 +8,20 @@
 
 
     <EditText
+        android:id="@+id/task_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/task_content"
-        android:inputType="text|textAutoCorrect"
-        android:hint="@string/task"
         android:layout_margin="10dp"
         android:autofillHints="none"
-        />
+        android:hint="@string/task"
+        android:inputType="text|textAutoCorrect"
+        android:minHeight="48dp"
+        tools:ignore="VisualLintTextFieldSize" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Choose end date"
+        android:text="@string/choose_end_date"
         android:gravity="center"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -35,10 +37,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:text="Create"
+        android:text="@string/create"
         android:elevation="10dp"
         android:textAllCaps="false"
         android:textSize="20sp"
-        />
+        tools:ignore="VisualLintButtonSize"
+        android:layout_gravity="center"/>
 
 </LinearLayout>
