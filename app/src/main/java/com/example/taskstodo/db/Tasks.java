@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "tasks_db")
+@Entity(tableName = "tasks_table")
 public class Tasks {
     @PrimaryKey(autoGenerate = true)
     public int uid;

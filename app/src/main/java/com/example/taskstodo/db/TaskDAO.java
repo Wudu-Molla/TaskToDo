@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface TaskDAO {
 
-    @Query("SELECT * FROM tasks_db")
+    @Query("SELECT * FROM tasks_table")
     List<Tasks> getTasks();
 
     @Insert
