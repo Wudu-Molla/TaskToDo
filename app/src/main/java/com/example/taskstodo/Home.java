@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.taskstodo.db.DBManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class Home extends AppCompatActivity implements View.OnClickListener {
@@ -25,12 +27,14 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
     LinearLayout notification, tasks, home;
     ImageView notificationIcon, homeIcon;
     TextView notificationText, homeText, tasksText;
+    DBManager dbManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         manager = getSupportFragmentManager();
+        dbManager = new DBManager(this);
         home = findViewById(R.id.home);
         notification = findViewById(R.id.notification);
         tasks = findViewById(R.id.tasks);
@@ -52,23 +56,37 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
         switch(view.getId()){
 
             case R.id.add:
-
                 LayoutInflater inflater =  LayoutInflater.from(this);
                 View createView = inflater.inflate(R.layout.task_create_view, null);
                 EditText task_content = createView.findViewById(R.id.task_content);
-                TimePicker timePicker = createView.findViewById(R.id.time);
                 DatePicker datePicker = createView.findViewById(R.id.date);
+                Button task_create_cancel_btn = createView.findViewById(R.id.task_create_cancel_btn);
+                Button task_create_btn = createView.findViewById(R.id.task_create_btn);
                 AlertDialog.Builder alertBuilder = new AlertDialog.Builder(Home.this);
                 alertBuilder.setTitle("Create new task");
                 alertBuilder.setView(createView);
-                alertBuilder.setPositiveButton("OK", (dialogInterface, i) -> {
-
-                });
-                alertBuilder.setNegativeButton("Cancel", (dialogInterface, i)-> {
-                    Home.this.alert.cancel();
-                });
                 alert = alertBuilder.create();
                 alert.show();
+                task_create_btn.setOnClickListener(view1 -> {
+                    String content = task_content.getText().toString();
+                    if (!content.isEmpty()){
+                        String dayOfMonth = String.valueOf(datePicker.getDayOfMonth());
+                        String month = String.valueOf(datePicker.getMonth()+1);
+                        String year = String.valueOf(datePicker.getYear());
+                        String end_date_of_task = dayOfMonth +"/" + month + "/" + year;
+                        dbManager.openDB();
+                        dbManager.insert(content, end_date_of_task, "false");
+                        dbManager.closeDB();
+                        Toast.makeText(Home.this, "Task created successfully", Toast.LENGTH_SHORT).show();
+                        alert.cancel();
+
+                    }
+                });
+                task_create_cancel_btn.setOnClickListener(view1 -> {
+                    alert.cancel();
+                    Toast.makeText(Home.this, "Canceled", Toast.LENGTH_SHORT).show();
+                });
+
 
 
 
