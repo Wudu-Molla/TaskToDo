@@ -127,7 +127,7 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
             break;
             default:
                 manager.beginTransaction()
-                        .add(R.id.fragment_container, HomeFragment.class, null).commit();
+                        .replace(R.id.fragment_container, HomeFragment.class, null).commit();
                 tasks.setBackgroundColor(getResources().getColor(android.R.color.transparent));
                 tasksText.setVisibility(View.GONE);
 
@@ -139,6 +139,7 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
 
                 homeIcon.setImageResource(R.drawable.home_selected);
                 notificationIcon.setImageResource(R.drawable.notification);
+
             break;
         }
     }
