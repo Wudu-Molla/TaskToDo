@@ -42,10 +42,33 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskViewHolder>{
         holder.isDone.setChecked(tasks.get(position).isDone);
         if(tasks.get(position).isDone) {
             holder.remaining_time.setText(R.string.done);
+            holder.remaining_time.setTextColor(context.getColor(R.color.green));
         }else{
             Calendar cal = Calendar.getInstance();
-            String now = String.valueOf(cal.getTime());
-            holder.remaining_time.setText(now);
+            int year = cal.get(Calendar.YEAR);
+            int month =cal.get(Calendar.MONTH)+1;
+            int day = cal.get(Calendar.DAY_OF_MONTH);
+
+            String [] s = tasks.get(position).getEndDate().split("/");
+
+            int remaining_day = Integer.valueOf(s[0]) - day;
+            int remaining_month = Integer.valueOf(s[1]) - month;
+            int remaining_year = Integer.valueOf(s[2]) - year;
+
+            if(remaining_month < 1 && remaining_year < 1){
+                holder.remaining_time.setText("Remaining time: " + remaining_day +" days" );
+                holder.remaining_time.setTextColor(context.getColor(R.color.green));
+            }
+            if(remaining_day==0) {
+                holder.remaining_time.setText("Remaining time: Ends today");
+                holder.remaining_time.setTextColor(context.getColor(R.color.yellow));
+            }
+            if(remaining_day<0) {
+                holder.remaining_time.setText("Remaining time: Ended");
+                holder.remaining_time.setTextColor(context.getColor(R.color.red));
+
+            }
+
         }
         holder.task_view.setOnClickListener(view ->{
             onItemClicked.onItemClicked(tasks.get(position));
