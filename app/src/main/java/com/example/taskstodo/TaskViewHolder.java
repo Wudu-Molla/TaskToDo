@@ -2,6 +2,7 @@ package com.example.taskstodo;
 
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,7 @@ public class TaskViewHolder extends RecyclerView.ViewHolder {
 
     CheckBox isDone;
     TextView task, end_date, remaining_time;
+    LinearLayout task_view;
 
     public TaskViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -19,5 +21,6 @@ public class TaskViewHolder extends RecyclerView.ViewHolder {
         task = itemView.findViewById(R.id.task);
         end_date = itemView.findViewById(R.id.end_date);
         remaining_time = itemView.findViewById(R.id.remaining_time);
+        task_view = itemView.findViewById(R.id.task_view);
     }
 }
