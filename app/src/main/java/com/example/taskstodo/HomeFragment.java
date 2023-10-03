@@ -4,6 +4,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -34,6 +35,24 @@ public class HomeFragment extends Fragment implements TaskAdapter.OnItemClicked 
         recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
         instance = TasksDB.getDatabase(requireActivity()).taskDAO();
         recyclerView.setAdapter(new TaskAdapter(requireActivity(), instance.getTasks(), this));
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
+                new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT) {
+
+                    @Override
+                    public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                        return false;
+                    }
+
+                    @Override
+                    public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                        int position = viewHolder.getAdapterPosition();
+                        int id = instance.getTasks().get(position).getUid();
+                        instance.deleteTask(id);
+
+                    }
+                }
+        );
+        itemTouchHelper.attachToRecyclerView(recyclerView);
         return view;
     }
 
@@ -43,4 +62,5 @@ public class HomeFragment extends Fragment implements TaskAdapter.OnItemClicked 
         instance.update(task.getUid(), !task.isDone());
         recyclerView.setAdapter(new TaskAdapter(requireActivity(), instance.getTasks(), this));
     }
+
 }
