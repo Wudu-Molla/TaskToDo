@@ -48,6 +48,10 @@ public class Tasks {
     public void setDone(boolean done) {
         isDone = done;
     }
+
+    public int getUid() {
+        return uid;
+    }
 }
 
 
