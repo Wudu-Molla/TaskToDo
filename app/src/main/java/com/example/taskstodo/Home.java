@@ -100,8 +100,8 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
                 tasks.setBackground(getDrawable(R.drawable.rounded));
                 tasksText.setVisibility(View.VISIBLE);
 
-                home.setBackgroundColor(getResources().getColor(android.R.color.transparent));
-                notification.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                home.setBackgroundColor(getApplicationContext().getColor(android.R.color.transparent));
+                notification.setBackgroundColor(getApplicationContext().getColor(android.R.color.transparent));
 
                 homeText.setVisibility(View.GONE);
                 notificationText.setVisibility(View.GONE);
@@ -111,11 +111,11 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
 
                 break;
             case R.id.notification:
-                tasks.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                tasks.setBackgroundColor(getApplicationContext().getColor(android.R.color.transparent));
                 tasksText.setVisibility(View.GONE);
 
                 notification.setBackground(getDrawable(R.drawable.rounded));
-                home.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                home.setBackgroundColor(getApplicationContext().getColor(android.R.color.transparent));
 
                 homeText.setVisibility(View.GONE);
                 notificationText.setVisibility(View.VISIBLE);
@@ -128,11 +128,11 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
             default:
                 manager.beginTransaction()
                         .replace(R.id.fragment_container, HomeFragment.class, null).commit();
-                tasks.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                tasks.setBackgroundColor(getApplicationContext().getColor(android.R.color.transparent));
                 tasksText.setVisibility(View.GONE);
 
                 home.setBackground(getDrawable(R.drawable.rounded));
-                notification.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                notification.setBackgroundColor(getApplicationContext().getColor(android.R.color.transparent));
 
                 homeText.setVisibility(View.VISIBLE);
                 notificationText.setVisibility(View.GONE);
