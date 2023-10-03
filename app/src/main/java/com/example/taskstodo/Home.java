@@ -78,7 +78,7 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
                         String end_date_of_task = dayOfMonth +"/" + month + "/" + year;
 
                         TasksDB instance = TasksDB.getDatabase(getApplicationContext());
-                        instance.taskDAO().insert(new Tasks(content, end_date_of_task, true));
+                        instance.taskDAO().insert(new Tasks(content, end_date_of_task, false));
                         instance.close();
                         Toast.makeText(Home.this, "Task created successfully", Toast.LENGTH_SHORT).show();
                         alert.cancel();
