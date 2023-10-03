@@ -24,8 +24,13 @@ public interface TaskDAO {
     @Delete
     void delete(Tasks tasks);
 
+
+    @Query("DELETE FROM tasks_table WHERE uid=:id")
+    void deleteTask(int id);
+
     @Query("UPDATE tasks_table SET is_done=:isDone WHERE uid=:id")
     void update(int id, boolean isDone);
+
 
 }
 
