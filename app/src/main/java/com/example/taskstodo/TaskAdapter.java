@@ -51,9 +51,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskViewHolder>{
 
             String [] s = tasks.get(position).getEndDate().split("/");
 
-            int remaining_day = Integer.valueOf(s[0]) - day;
-            int remaining_month = Integer.valueOf(s[1]) - month;
-            int remaining_year = Integer.valueOf(s[2]) - year;
+            int remaining_day = Integer.parseInt(s[0]) - day;
+            int remaining_month = Integer.parseInt(s[1]) - month;
+            int remaining_year = Integer.parseInt(s[2]) - year;
 
             if(remaining_month < 1 && remaining_year < 1){
                 holder.remaining_time.setText("Remaining time: " + remaining_day +" days" );
