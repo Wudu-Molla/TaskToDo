@@ -2,7 +2,6 @@ package com.example.taskstodo;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
-import androidx.room.Room;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
@@ -15,8 +14,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.example.taskstodo.db.TaskDAO;
 import com.example.taskstodo.db.Tasks;
 import com.example.taskstodo.db.TasksDB;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -79,7 +76,6 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
 
                         TasksDB instance = TasksDB.getDatabase(getApplicationContext());
                         instance.taskDAO().insert(new Tasks(content, end_date_of_task, false));
-                        instance.close();
                         Toast.makeText(Home.this, "Task created successfully", Toast.LENGTH_SHORT).show();
                         alert.cancel();
 
